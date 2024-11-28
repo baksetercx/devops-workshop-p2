@@ -32,6 +32,8 @@ spec:
           valueFrom:
             fieldRef:
               fieldPath: metadata.name
+        - name: MESSAGE
+          value: "Min kule melding fra Kubernetes!"
         resources:
           limits:
             cpu: 30m

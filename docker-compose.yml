@@ -8,8 +8,7 @@ services:
 
   backend:
     build: backend
-# fjern
     ports:
       - "8080:8080"
-#   environment:
-#     - MESSAGE=Hello from Docker
+    environment:
+      MESSAGE: "Min kule melding"

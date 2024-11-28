@@ -231,4 +231,7 @@ Da vil GitHub Actions rydde opp etter seg og slette ressursene som ble opprettet
 
 # 🤓 Setup for spesielt interesserte (ikke en del av workshop'en)
 
-TODO
+1. Lag en profil på [Hetzner Cloud](https://www.hetzner.com/cloud).
+2. Sett opp et k3s-cluster på Hetzner Cloud ved hjelp av [Kube-Hetzner](https://github.com/kube-hetzner/terraform-hcloud-kube-hetzner). Følg README'en i repoet.
+3. Få ut kubeconfig-output fra Terraform og paste den inn i GitHub Secrets med navnet `KUBECONFIG`.
+4. Gjør noe liknende som i [deploy.yml](.github/workflows/deploy.yml) for å deploye til ditt eget cluster.
