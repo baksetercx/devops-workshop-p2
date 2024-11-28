@@ -39,7 +39,7 @@ jobs:
         uses: docker/build-push-action@v5
         with:
           push: 'true'
-          tags: 'ghcr.io/${{ github.repository }}/${{ matrix.application }}/${{ github.head_ref }}:latest'
+          tags: 'ghcr.io/${{ github.repository }}/${{ github.head_ref }}/${{ matrix.application }}:latest'
           context: ${{ matrix.application }}
 
   deploy:
@@ -92,6 +92,6 @@ jobs:
 
           echo "IP with port is: $NODE_IP:$node_port"
         env:
-          IMAGE_NAME: 'ghcr.io/${{ github.repository }}/${{ matrix.application }}/${{ github.head_ref }}:latest'
+          IMAGE_NAME: 'ghcr.io/${{ github.repository }}/${{ github.head_ref }}/${{ matrix.application }}:latest'
           DEPLOYMENT_NAME: ${{ matrix.application }}
           NODE_IP: ${{ vars.NODE_IP }}
