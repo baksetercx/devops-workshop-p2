@@ -1,0 +1,52 @@
+name: Destroy
+
+on:
+  pull_request:
+    branches:
+      - master
+    types:
+      - closed
+
+env:
+  NAMESPACE_NAME: '${{ github.head_ref }}'
+
+jobs:
+  destroy:
+    name: 'Destroy ${{ matrix.application }} from Kubernetes'
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        application:
+#         - frontend
+          - backend
+      fail-fast: false
+    permissions:
+      contents: read
+      packages: write
+    defaults:
+      run:
+        working-directory: ${{ matrix.application }}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up kubeconfig
+        run: |
+          mkdir -p ~/.kube
+          cat <<EOF > ~/.kube/config
+          ${{ secrets.KUBECONFIG }}
+          EOF
+
+      - name: Run kubectl delete
+        run: |
+          sed \
+            -i "s|<NAMESPACE_NAME>|$NAMESPACE_NAME|g; s|<IMAGE_NAME>|$IMAGE_NAME|g; s|<DEPLOYMENT_NAME>|$DEPLOYMENT_NAME|g" \
+           resources.yml
+
+          # For debugging purposes
+          cat resources.yml
+
+          kubectl delete -f resources.yml
+        env:
+          IMAGE_NAME: 'ghcr.io/${{ github.repository }}/${{ matrix.application }}/${{ github.head_ref }}:latest'
+          DEPLOYMENT_NAME: ${{ matrix.application }}

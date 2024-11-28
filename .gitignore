@@ -1,4 +1,5 @@
-**/terraform.tfvars
-**/terraform.tfstate
-**/.terraform
-**/.terraform.lock.hcl
+terraform.tfvars
+terraform.tfstate
+.terraform
+.terraform.lock.hcl
+node_modules/

@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script>
+            const backendHost = 'localhost';
+
+            fetch(`http://${backendHost}:8080/api`, new Headers({ Connection: 'close', 'Keep-Alive': 'timeout=1, max=10' }))
+                .then(response => response.json())
+                .catch(error => document.body.getElementsByTagName('h3')[0].innerText = "Klarte ikke å nå backend :(")
+                .then(data => data?.message && (document.body.getElementsByTagName('h3')[0].innerText = data.message));
+        </script>
+    </head>
+    <body>
+        <h1>Hei, verden!</h1>
+        <h3></h3>
+    </body>
+</html>
