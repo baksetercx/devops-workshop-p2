@@ -151,10 +151,10 @@ Vi har lyst til å deploye vår backend til Kubernetes.
 Definisjonen for Namespace, Deployment og Service er allerede laget for deg i [resources.yml](backend/resources.yml).
 
 Åpne en pull request mot `master`-branchen og se om GitHub Actions bygger og deployer for deg.
-Du burde få en IP-addresse til backend'en din som output i GitHub Actions.
+Du burde få en IP-addresse m/ portnummber til backend'en din som output i GitHub Actions.
 
-Gå til IP-adressen i nettleseren din og se om du får svar fra backend.
-Full addresse vil være `http://<din IP>:8080/api`.
+Gå til addressen i nettleseren din og se om du får svar fra backend.
+Full addresse vil være `http://<IP med port>/api`.
 
 ### 🔨 Oppgave 4.2
 
@@ -165,10 +165,10 @@ Når du går inn på IP-adressen din igjen, vil du se at du får svar fra to for
 *Det kan hende nettleseren din cacher eller gjenbruker samme forbindelse, så prøv å åpne en inkognitotab eller terminalen:*
 
 ```bash
-curl -v http://<din IP>:8080/api
+curl -v http://<IP med port>/api
 ```
 
-Du kan også prøve å endre `backendHost` i [frontend/index.html](frontend/index.html) til å peke på IP-adressen til Kubernetes.
+Du kan også prøve å endre `backendHost` og `backendPort` i [frontend/index.html](frontend/index.html) til å peke på IP-adressen til Kubernetes.
 
 ### 🔨 Oppgave 4.3
 
