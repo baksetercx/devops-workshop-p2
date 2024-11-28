@@ -4,3 +4,5 @@ terraform.tfstate.backup
 .terraform
 .terraform.lock.hcl
 node_modules/
+k3s_kubeconfig.yaml
+k3s_kustomization_backup.yaml

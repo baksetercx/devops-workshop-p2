@@ -504,7 +504,7 @@ module "kube-hetzner" {
 
   # By default traefik is configured to redirect http traffic to https, you can set this to "false" to disable the redirection.
   # The default is true.
-  # traefik_redirect_to_https = false
+  traefik_redirect_to_https = false
 
   # Enable or disable Horizontal Pod Autoscaler for traefik.
   # The default is true.
@@ -550,7 +550,7 @@ module "kube-hetzner" {
   # ]
 
   # If you want to disable the metric server set this to "false". Default is "true".
-  # enable_metrics_server = false
+  enable_metrics_server = false
 
   # If you want to enable the k3s built-in local-storage controller set this to "true". Default is "false".
   # enable_local_storage = false
@@ -582,7 +582,7 @@ module "kube-hetzner" {
 
   # The default is "true" (in HA setup it works wonderfully well, with automatic roll-back to the previous snapshot in case of an issue).
   # IMPORTANT! For non-HA clusters i.e. when the number of control-plane nodes is < 3, you have to turn it off.
-  # automatically_upgrade_os = false
+  automatically_upgrade_os = false
 
   # If you need more control over kured and the reboot behaviour, you can pass additional options to kured.
   # For example limiting reboots to certain timeframes. For all options see: https://kured.dev/docs/configuration/
@@ -602,7 +602,7 @@ module "kube-hetzner" {
   # Allows you to specify the k3s version. If defined, supersedes initial_k3s_channel.
   # See https://github.com/k3s-io/k3s/releases for the available versions.
   # install_k3s_version = "v1.30.2+k3s2"
-  
+  #
   # Allows you to specify either stable, latest, testing or supported minor versions.
   # see https://rancher.com/docs/k3s/latest/en/upgrades/basic/ and https://update.k3s.io/v1-release/channels
   # ⚠️ If you are going to use Rancher addons for instance, it's always a good idea to fix the kube version to one minor version below the latest stable,
@@ -1008,44 +1008,65 @@ persistence:
 
   # Traefik, all Traefik helm values can be found at https://github.com/traefik/traefik-helm-chart/blob/master/traefik/values.yaml
   # The following is an example, please note that the current indentation inside the EOT is important.
-  /*   traefik_values = <<EOT
+     traefik_values = <<EOT
+additionalArguments:
+- --providers.kubernetesingress.ingressendpoint.publishedservice=traefik/traefik
+autoscaling:
+  enabled: true
+  maxReplicas: 10
+  minReplicas: 1
+api: {}
 deployment:
   replicas: 1
 globalArguments: []
-service:
+image:
+  tag: null
+podDisruptionBudget:
   enabled: true
-  type: LoadBalancer
-  annotations:
-    "load-balancer.hetzner.cloud/name": "k3s"
-    "load-balancer.hetzner.cloud/use-private-ip": "true"
-    "load-balancer.hetzner.cloud/disable-private-ingress": "true"
-    "load-balancer.hetzner.cloud/location": "nbg1"
-    "load-balancer.hetzner.cloud/type": "lb11"
-    "load-balancer.hetzner.cloud/uses-proxyprotocol": "true"
-
+  maxUnavailable: 33%
 ports:
   web:
-    redirectTo:
-      port: websecure
-
-    proxyProtocol:
-      trustedIPs:
-        - 127.0.0.1/32
-        - 10.0.0.0/8
     forwardedHeaders:
       trustedIPs:
-        - 127.0.0.1/32
-        - 10.0.0.0/8
+      - 127.0.0.1/32
+      - 10.0.0.0/8
+    proxyProtocol:
+      trustedIPs:
+      - 127.0.0.1/32
+      - 10.0.0.0/8
   websecure:
-    proxyProtocol:
-      trustedIPs:
-        - 127.0.0.1/32
-        - 10.0.0.0/8
     forwardedHeaders:
       trustedIPs:
-        - 127.0.0.1/32
-        - 10.0.0.0/8
-  EOT */
+      - 127.0.0.1/32
+      - 10.0.0.0/8
+    proxyProtocol:
+      trustedIPs:
+      - 127.0.0.1/32
+      - 10.0.0.0/8
+resources:
+  limits:
+    cpu: 300m
+    memory: 150Mi
+  requests:
+    cpu: 100m
+    memory: 50Mi
+service:
+  annotations:
+    load-balancer.hetzner.cloud/algorithm-type: round_robin
+    load-balancer.hetzner.cloud/disable-private-ingress: "true"
+    load-balancer.hetzner.cloud/disable-public-network: "false"
+    load-balancer.hetzner.cloud/health-check-interval: 15s
+    load-balancer.hetzner.cloud/health-check-retries: "3"
+    load-balancer.hetzner.cloud/health-check-timeout: 10s
+    load-balancer.hetzner.cloud/ipv6-disabled: "false"
+    load-balancer.hetzner.cloud/location: fsn1
+    load-balancer.hetzner.cloud/name: k3s-traefik
+    load-balancer.hetzner.cloud/type: lb11
+    load-balancer.hetzner.cloud/use-private-ip: "true"
+    load-balancer.hetzner.cloud/uses-proxyprotocol: "true"
+  enabled: true
+  type: LoadBalancer
+EOT
 
   # If you want to use a specific Nginx helm chart version, set it below; otherwise, leave them as-is for the latest versions.
   # See https://github.com/kubernetes/ingress-nginx?tab=readme-ov-file#supported-versions-table for the available versions.

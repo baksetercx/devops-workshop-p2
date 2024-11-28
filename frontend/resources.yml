@@ -47,9 +47,11 @@ metadata:
   namespace: <NAMESPACE_NAME>
 spec:
   ports:
-  - port: 80
+  - port: 8080
     protocol: TCP
-    targetPort: 3000
+    targetPort: 8080
   selector:
     app: <DEPLOYMENT_NAME>
-  type: LoadBalancer
+  type: ClusterIP
+status:
+  loadBalancer: {}
