@@ -86,12 +86,12 @@ jobs:
           node_port=""
           while [ -z $node_port ]; do
             echo "Waiting for node port..."
-            external_ip=$(kubectl -n "$NAMESPACE_NAME" get svc "$DEPLOYMENT_NAME" --output="jsonpath={.spec.ports[0].nodePort}")
-            [ -z "$node_port" ] && sleep 10
+            node_port=$(kubectl -n "$NAMESPACE_NAME" get svc "$DEPLOYMENT_NAME" --output="jsonpath={.spec.ports[0].nodePort}")
+            [ -z "$node_port" ] && sleep 5
           done
 
-          echo "IP with port is: $NODE_IP:$external_ip"
+          echo "IP with port is: $NODE_IP:$node_port"
         env:
           IMAGE_NAME: 'ghcr.io/${{ github.repository }}/${{ matrix.application }}/${{ github.head_ref }}:latest'
           DEPLOYMENT_NAME: ${{ matrix.application }}
-          NODE_IP: ${{ secrets.NODE_IP }}
+          NODE_IP: ${{ vars.NODE_IP }}

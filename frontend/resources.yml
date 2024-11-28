@@ -52,6 +52,6 @@ spec:
     targetPort: 8080
   selector:
     app: <DEPLOYMENT_NAME>
-  type: ClusterIP
+  type: NodePort
 status:
   loadBalancer: {}
