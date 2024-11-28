@@ -1,0 +1,13 @@
+{
+  "name": "devops-workshop",
+  "license": "UNLICENSED",
+  "scripts": {
+    "start": "serve ."
+  },
+  "dependencies": {
+    "serve": "^14.2.4"
+  },
+  "engines": {
+    "node": ">=16"
+  }
+}
