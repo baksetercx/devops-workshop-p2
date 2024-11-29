@@ -25,7 +25,7 @@ func main() {
 }
 
 func getMessage() string {
-	message := os.Getenv("MESSAGE")
+	message := os.Getenv("HELLO FROM ME?s")
 	podName := os.Getenv("POD_NAME")
 
 	if message != "" {
