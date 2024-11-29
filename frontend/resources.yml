@@ -26,7 +26,7 @@ spec:
       - image: <IMAGE_NAME>
         name: <DEPLOYMENT_NAME>
         ports:
-        - containerPort: 3000
+        - containerPort: 8080
         env:
         - name: BACKEND_HOST
           value: "backend.<NAMESPACE_NAME>.svc.cluster.local"
@@ -49,15 +49,15 @@ metadata:
   namespace: <NAMESPACE_NAME>
 spec:
   replicas: 3
-  env:
-  - name: MESSAGE
-    value: "ny melding"
   ports:
   - port: 8080
     protocol: TCP
     targetPort: 8080
   selector:
     app: <DEPLOYMENT_NAME>
+  env:
+  - name: MESSAGE
+    value: "ny melding"
   type: NodePort
 status:
   loadBalancer: {}
