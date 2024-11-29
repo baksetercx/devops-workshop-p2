@@ -23,22 +23,22 @@ spec:
         app: <DEPLOYMENT_NAME>
     spec:
       containers:
-      - image: <IMAGE_NAME>
-        name: <DEPLOYMENT_NAME>
-        ports:
-        - containerPort: 8080
-        env:
-        - name: POD_NAME
-          valueFrom:
-            fieldRef:
-              fieldPath: metadata.name
-        resources:
-          limits:
-            cpu: 30m
-            memory: 32Mi
-          requests:
-            cpu: 30m
-            memory: 32Mi
+        - image: <IMAGE_NAME>
+          name: <DEPLOYMENT_NAME>
+          ports:
+            - containerPort: 8080
+          env:
+            - name: POD_NAME
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.name
+          resources:
+            limits:
+              cpu: 30m
+              memory: 32Mi
+            requests:
+              cpu: 30m
+              memory: 32Mi
 ---
 apiVersion: v1
 kind: Service
@@ -49,9 +49,9 @@ metadata:
   namespace: <NAMESPACE_NAME>
 spec:
   ports:
-  - port: 8080
-    protocol: TCP
-    targetPort: 8080
+    - port: 8080
+      protocol: TCP
+      targetPort: 8080
   selector:
     app: <DEPLOYMENT_NAME>
   type: NodePort
