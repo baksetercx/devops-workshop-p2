@@ -151,10 +151,14 @@ Vi har lyst til å deploye vår backend til Kubernetes.
 Definisjonen for Namespace, Deployment og Service er allerede laget for deg i [resources.yml](backend/resources.yml).
 
 Åpne en pull request mot `master`-branchen og se om GitHub Actions bygger og deployer for deg.
-Du burde få en IP-addresse m/ portnummber til backend'en din som output i GitHub Actions.
+Når bygg-steget er ferdig, vil du kunne se ditt image under [packeges](https://github.com/baksetercx?tab=packages&repo_name=devops-workshop-p2).
+
+Du burde også få en IP-addresse m/ portnummber til backend'en din som output i GitHub Actions når deploy er ferdig.
 
 Gå til addressen i nettleseren din og se om du får svar fra backend.
 Full addresse vil være `http://<IP med port>/api`.
+
+**NB!** ikke bruk WiFi SecureCX2, den vil blokke tilgang til clusteret.
 
 ### 🔨 Oppgave 4.2
 
