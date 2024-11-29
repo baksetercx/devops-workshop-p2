@@ -12,7 +12,7 @@ metadata:
   name: <DEPLOYMENT_NAME>
   namespace: <NAMESPACE_NAME>
 spec:
-  replicas: 1
+  replicas: 2
   selector:
     matchLabels:
       app: <DEPLOYMENT_NAME>
@@ -23,20 +23,20 @@ spec:
         app: <DEPLOYMENT_NAME>
     spec:
       containers:
-      - image: <IMAGE_NAME>
-        name: <DEPLOYMENT_NAME>
-        ports:
-        - containerPort: 3000
-        env:
-        - name: BACKEND_HOST
-          value: "backend.<NAMESPACE_NAME>.svc.cluster.local"
-        resources:
-          limits:
-            cpu: 30m
-            memory: 96Mi
-          requests:
-            cpu: 30m
-            memory: 96Mi
+        - image: <IMAGE_NAME>
+          name: <DEPLOYMENT_NAME>
+          ports:
+            - containerPort: 3000
+          env:
+            - name: BACKEND_HOST
+              value: "backend.<NAMESPACE_NAME>.svc.cluster.local"
+          resources:
+            limits:
+              cpu: 30m
+              memory: 96Mi
+            requests:
+              cpu: 30m
+              memory: 96Mi
 ---
 apiVersion: v1
 kind: Service
@@ -47,9 +47,9 @@ metadata:
   namespace: <NAMESPACE_NAME>
 spec:
   ports:
-  - port: 8080
-    protocol: TCP
-    targetPort: 8080
+    - port: 8080
+      protocol: TCP
+      targetPort: 8080
   selector:
     app: <DEPLOYMENT_NAME>
   type: NodePort
