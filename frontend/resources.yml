@@ -30,6 +30,8 @@ spec:
         env:
         - name: BACKEND_HOST
           value: "backend.<NAMESPACE_NAME>.svc.cluster.local"
+        - name: MESSAGE
+          value: "hvorfor leser du meldingene mine"
         resources:
           limits:
             cpu: 30m
