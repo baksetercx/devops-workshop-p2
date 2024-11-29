@@ -158,7 +158,7 @@ Du burde også få en IP-addresse m/ portnummber til backend'en din som output i
 Gå til addressen i nettleseren din og se om du får svar fra backend.
 Full addresse vil være `http://<IP med port>/api`.
 
-**NB!** ikke bruk WiFi SecureCX2, den vil blokke tilgang til clusteret.
+**NB!** WiFi kan blokkere direkte tilgang til clusteret, så prøv å bruk delt internet fra mobil om det ikke fungerer.
 
 ### 🔨 Oppgave 4.2
 

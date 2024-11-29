@@ -137,34 +137,34 @@ module "kube-hetzner" {
       # Enable automatic backups via Hetzner (default: false)
       # backups = true
     },
-#   {
-#     name        = "control-plane-nbg1",
-#     server_type = "cx22",
-#     location    = "nbg1",
-#     labels      = [],
-#     taints      = [],
-#     count       = 1
+    #   {
+    #     name        = "control-plane-nbg1",
+    #     server_type = "cx22",
+    #     location    = "nbg1",
+    #     labels      = [],
+    #     taints      = [],
+    #     count       = 1
 
-      # Fine-grained control over placement groups (nodes in the same group are spread over different physical servers, 10 nodes per placement group max):
-      # placement_group = "default"
+    # Fine-grained control over placement groups (nodes in the same group are spread over different physical servers, 10 nodes per placement group max):
+    # placement_group = "default"
 
-      # Enable automatic backups via Hetzner (default: false)
-      # backups = true
-#   },
-#   {
-#     name        = "control-plane-hel1",
-#     server_type = "cx22",
-#     location    = "hel1",
-#     labels      = [],
-#     taints      = [],
-#     count       = 1
+    # Enable automatic backups via Hetzner (default: false)
+    # backups = true
+    #   },
+    #   {
+    #     name        = "control-plane-hel1",
+    #     server_type = "cx22",
+    #     location    = "hel1",
+    #     labels      = [],
+    #     taints      = [],
+    #     count       = 1
 
-      # Fine-grained control over placement groups (nodes in the same group are spread over different physical servers, 10 nodes per placement group max):
-      # placement_group = "default"
+    # Fine-grained control over placement groups (nodes in the same group are spread over different physical servers, 10 nodes per placement group max):
+    # placement_group = "default"
 
-      # Enable automatic backups via Hetzner (default: false)
-      # backups = true
-#   }
+    # Enable automatic backups via Hetzner (default: false)
+    # backups = true
+    #   }
   ]
 
   agent_nodepools = [
@@ -185,88 +185,88 @@ module "kube-hetzner" {
       # Enable automatic backups via Hetzner (default: false)
       # backups = true
     },
-#   {
-#     name        = "agent-large",
-#     server_type = "cx32",
-#     location    = "nbg1",
-#     labels      = [],
-#     taints      = [],
-#     count       = 1
+    #   {
+    #     name        = "agent-large",
+    #     server_type = "cx32",
+    #     location    = "nbg1",
+    #     labels      = [],
+    #     taints      = [],
+    #     count       = 1
 
-      # Fine-grained control over placement groups (nodes in the same group are spread over different physical servers, 10 nodes per placement group max):
-      # placement_group = "default"
+    # Fine-grained control over placement groups (nodes in the same group are spread over different physical servers, 10 nodes per placement group max):
+    # placement_group = "default"
 
-      # Enable automatic backups via Hetzner (default: false)
-      # backups = true
-#   },
-#   {
-#     name        = "storage",
-#     server_type = "cx32",
-#     location    = "fsn1",
-#     # Fully optional, just a demo.
-#     labels      = [
-#       "node.kubernetes.io/server-usage=storage"
-#     ],
-#     taints      = [],
-#     count       = 1
+    # Enable automatic backups via Hetzner (default: false)
+    # backups = true
+    #   },
+    #   {
+    #     name        = "storage",
+    #     server_type = "cx32",
+    #     location    = "fsn1",
+    #     # Fully optional, just a demo.
+    #     labels      = [
+    #       "node.kubernetes.io/server-usage=storage"
+    #     ],
+    #     taints      = [],
+    #     count       = 1
 
-      # In the case of using Longhorn, you can use Hetzner volumes instead of using the node's own storage by specifying a value from 10 to 10240 (in GB)
-      # It will create one volume per node in the nodepool, and configure Longhorn to use them.
-      # Something worth noting is that Volume storage is slower than node storage, which is achieved by not mentioning longhorn_volume_size or setting it to 0.
-      # So for something like DBs, you definitely want node storage, for other things like backups, volume storage is fine, and cheaper.
-      # longhorn_volume_size = 20
+    # In the case of using Longhorn, you can use Hetzner volumes instead of using the node's own storage by specifying a value from 10 to 10240 (in GB)
+    # It will create one volume per node in the nodepool, and configure Longhorn to use them.
+    # Something worth noting is that Volume storage is slower than node storage, which is achieved by not mentioning longhorn_volume_size or setting it to 0.
+    # So for something like DBs, you definitely want node storage, for other things like backups, volume storage is fine, and cheaper.
+    # longhorn_volume_size = 20
 
-      # Enable automatic backups via Hetzner (default: false)
-      # backups = true
-#   },
+    # Enable automatic backups via Hetzner (default: false)
+    # backups = true
+    #   },
     # Egress nodepool useful to route egress traffic using Hetzner Floating IPs (https://docs.hetzner.com/cloud/floating-ips)
     # used with Cilium's Egress Gateway feature https://docs.cilium.io/en/stable/gettingstarted/egress-gateway/
     # See the https://github.com/kube-hetzner/terraform-hcloud-kube-hetzner#examples for an example use case.
-#   {
-#     name        = "egress",
-#     server_type = "cx22",
-#     location    = "fsn1",
-#     labels = [
-#       "node.kubernetes.io/role=egress"
-#     ],
-#     taints = [
-#       "node.kubernetes.io/role=egress:NoSchedule"
-#     ],
-#     floating_ip = true
-#     count = 1
-#   },
+    #   {
+    #     name        = "egress",
+    #     server_type = "cx22",
+    #     location    = "fsn1",
+    #     labels = [
+    #       "node.kubernetes.io/role=egress"
+    #     ],
+    #     taints = [
+    #       "node.kubernetes.io/role=egress:NoSchedule"
+    #     ],
+    #     floating_ip = true
+    #     count = 1
+    #   },
     # Arm based nodes
-#   {
-#     name        = "agent-arm-small",
-#     server_type = "cax11",
-#     location    = "fsn1",
-#     labels      = [],
-#     taints      = [],
-#     count       = 1
-#   },
+    #   {
+    #     name        = "agent-arm-small",
+    #     server_type = "cax11",
+    #     location    = "fsn1",
+    #     labels      = [],
+    #     taints      = [],
+    #     count       = 1
+    #   },
     # For fine-grained control over the nodes in a node pool, replace the count variable with a nodes map.
     # In this case, the node-pool variables are defaults which can be overridden on a per-node basis.
     # Each key in the nodes map refers to a single node and must be an integer string ("1", "123", ...).
-#   {
-#     name        = "agent-arm-small",
-#     server_type = "cax11",
-#     location    = "fsn1",
-#     labels      = [],
-#     taints      = [],
-#     nodes = {
-#       "1" : {
-#         location                  = "nbg1"
-#         labels = [
-#           "testing-labels=a1",
-#         ]
-#       },
-#       "20" : {
-#         labels = [
-#           "testing-labels=b1",
-#         ]
-#       }
-#     }
-#   },
+    #   {
+    #     name        = "agent-arm-small",
+    #     server_type = "cax11",
+    #     location    = "fsn1",
+    #     labels      = [],
+    #     taints      = [],
+    #     nodes = {
+    #       "1" : {
+    #         location                  = "nbg1"
+    #         labels = [
+    #           "testing-labels=a1",
+    #         ]
+    #       },
+    #       "20" : {
+    #         labels = [
+    #           "testing-labels=b1",
+    #         ]
+    #       }
+    #     }
+    #   },
   ]
   # Add custom control plane configuration options here.
   # E.g to enable monitoring for etcd, proxy etc:
@@ -725,24 +725,27 @@ module "kube-hetzner" {
 
   # Adding extra firewall rules, like opening a port
   # More info on the format here https://registry.terraform.io/providers/hetznercloud/hcloud/latest/docs/resources/firewall
-  # extra_firewall_rules = [
-  #   {
-  #     description = "For Postgres"
-  #     direction       = "in"
-  #     protocol        = "tcp"
-  #     port            = "5432"
-  #     source_ips      = ["0.0.0.0/0", "::/0"]
-  #     destination_ips = [] # Won't be used for this rule
-  #   },
-  #   {
-  #     description = "To Allow ArgoCD access to resources via SSH"
-  #     direction       = "out"
-  #     protocol        = "tcp"
-  #     port            = "22"
-  #     source_ips      = [] # Won't be used for this rule
-  #     destination_ips = ["0.0.0.0/0", "::/0"]
-  #   }
-  # ]
+  extra_firewall_rules = [
+    {
+      description = "For NodePort"
+      direction   = "in"
+      protocol    = "tcp"
+      port        = "30000-32767"
+      source_ips = [
+        "0.0.0.0/0",
+        "::/0"
+      ]
+      destination_ips = [] # Won't be used for this rule
+    },
+    #   {
+    #     description = "To Allow ArgoCD access to resources via SSH"
+    #     direction       = "out"
+    #     protocol        = "tcp"
+    #     port            = "22"
+    #     source_ips      = [] # Won't be used for this rule
+    #     destination_ips = ["0.0.0.0/0", "::/0"]
+    #   }
+  ]
 
   # If you want to configure a different CNI for k3s, use this flag
   # possible values: flannel (Default), calico, and cilium
@@ -1008,7 +1011,7 @@ persistence:
 
   # Traefik, all Traefik helm values can be found at https://github.com/traefik/traefik-helm-chart/blob/master/traefik/values.yaml
   # The following is an example, please note that the current indentation inside the EOT is important.
-     traefik_values = <<EOT
+  traefik_values = <<EOT
 additionalArguments:
 - --providers.kubernetesingress.ingressendpoint.publishedservice=traefik/traefik
 autoscaling:
