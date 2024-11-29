@@ -33,7 +33,7 @@ func getMessage() string {
 	}
 
 	if podName != "" {
-		return "...og hei fra " + podName + " 🚀🚀🚀"
+		return "...og hei fra " + podName + " 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀"
 	}
 
 	return "...og hei fra backend 🚀🚀🚀"
