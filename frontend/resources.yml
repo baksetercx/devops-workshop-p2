@@ -25,6 +25,7 @@ spec:
       containers:
       - image: <IMAGE_NAME>
         name: <DEPLOYMENT_NAME>
+        imagePullPolicy: always
         ports:
         - containerPort: 8080
         env:
