@@ -12,7 +12,7 @@ metadata:
   name: <DEPLOYMENT_NAME>
   namespace: <NAMESPACE_NAME>
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       app: <DEPLOYMENT_NAME>
@@ -32,6 +32,8 @@ spec:
               valueFrom:
                 fieldRef:
                   fieldPath: metadata.name
+            - name: MESSAGE
+              value: "IVAN OG INGRID = K8 10xers"
           resources:
             limits:
               cpu: 30m
