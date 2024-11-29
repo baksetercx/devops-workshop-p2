@@ -8,3 +8,7 @@ services:
 
   backend:
     build: backend
+    environment:
+      - MESSAGE=Hei_ELLEN
+    ports:
+      - "8080:8080"
