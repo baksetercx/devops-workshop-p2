@@ -34,7 +34,7 @@ spec:
             fieldRef:
               fieldPath: metadata.name
         - name: MESSAGE
-          value: "🔥🤖🔥"
+          value: "IT WORKS ON MY MACHINE"
         resources:
           limits:
             cpu: 30m
