@@ -12,7 +12,7 @@ metadata:
   name: <DEPLOYMENT_NAME>
   namespace: <NAMESPACE_NAME>
 spec:
-  replicas: 1
+  replicas: 2
   selector:
     matchLabels:
       app: <DEPLOYMENT_NAME>
