@@ -48,6 +48,10 @@ metadata:
   name: <DEPLOYMENT_NAME>
   namespace: <NAMESPACE_NAME>
 spec:
+  replicas: 3
+  env:
+  - name: MESSAGE
+    value: "ny melding"
   ports:
   - port: 8080
     protocol: TCP
