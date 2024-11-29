@@ -25,6 +25,7 @@ spec:
       containers:
       - image: <IMAGE_NAME>
         name: <DEPLOYMENT_NAME>
+        imagePullPolicy: Always
         ports:
         - containerPort: 8080
         env:
@@ -32,6 +33,8 @@ spec:
           valueFrom:
             fieldRef:
               fieldPath: metadata.name
+        - name: MESSAGE
+          value: "IT WORKS ON MY MACHINE"
         resources:
           limits:
             cpu: 30m
