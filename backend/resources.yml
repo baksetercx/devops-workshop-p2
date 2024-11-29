@@ -33,7 +33,7 @@ spec:
             fieldRef:
               fieldPath: metadata.name
         - name: MESSAGE
-          - value: TOBTOBTOB
+          value: TOBTOBTOB
         resources:
           limits:
             cpu: 30m
